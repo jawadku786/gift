@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- SHARE PREVIEW -->
+<meta property="og:title" content="A Valentine Surprise 💖">
+<meta property="og:description" content="Someone made this just for you 💕">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://via.placeholder.com/600x400.png?text=Valentine+Surprise">
+
+<title>Valentine 💖</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Poppins', system-ui, sans-serif;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffe6ec, #fff0f5);
+  overflow: hidden;
+  transition: background 0.5s;
+}
+
+body.dark {
+  background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+  color: #f1f1f1;
+}
+
+/* NAVBAR */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 12px;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+body.dark nav {
+  background: rgba(30,30,50,0.85);
+}
+
+nav button {
+  border: none;
+  background: #ff4d6d;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+}
+
+/* FLOATING HEARTS */
+.heart-bg {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  background: #ff6f91;
+  transform: rotate(45deg);
+  animation: float 7s linear infinite;
+  opacity: 0.5;
+}
+
+.heart-bg::before,
+.heart-bg::after {
+  content: '';
+  width: 16px;
+  height: 16px;
+  background: #ff6f91;
+  border-radius: 50%;
+  position: absolute;
+}
+
+.heart-bg::before { top: -8px; left: 0; }
+.heart-bg::after { left: -8px; top: 0; }
+
+@keyframes float {
+  from { transform: translateY(100vh) rotate(45deg); }
+  to { transform: translateY(-10vh) rotate(45deg); }
+}
+
+/* CONTAINER */
+.container {
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 90px 20px 70px;
+  text-align: center;
+}
+
+.card {
+  background: white;
+  padding: 32px;
+  border-radius: 24px;
+  box-shadow: 0 14px 30px rgba(0,0,0,0.12);
+}
+
+body.dark .card {
+  background: #2e2e44;
+}
+
+.buttons {
+  margin-top: 30px;
+  position: relative;
+  height: 130px;
+}
+
+button {
+  padding: 14px 30px;
+  border-radius: 30px;
+  border: none;
+}
+
+#yesBtn {
+  background: #ff4d6d;
+  color: white;
+}
+
+#noBtn {
+  background: #eee;
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+/* YES PAGE */
+#yesPage { display: none; }
+
+.heartbeat {
+  animation: heartbeat 1.3s infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.15); }
+  60% { transform: scale(1); }
+}
+
+/* CAROUSEL */
+.slide { display: none; }
+.slide.active { display: block; }
+
+/* LOVE CARD */
+.love-card {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 20px;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  color: white;
+}
+
+/* FOOTER */
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+  <div>💖 Muppppppiiiiii🙈</div>
+  <button onclick="toggleDark()">Touch for Albutham</button>
+</nav>
+
+<!-- FLOATING HEARTS -->
+<script>
+for (let i = 0; i < 18; i++) {
+  const h = document.createElement("div");
+  h.className = "heart-bg";
+  h.style.left = Math.random() * 100 + "vw";
+  h.style.animationDuration = (5 + Math.random() * 5) + "s";
+  document.body.appendChild(h);
+}
+</script>
+
+<div class="container">
+
+  <!-- QUESTION -->
+  <div class="card" id="questionPage">
+    <h1>Hey Muppy 💛</h1>
+    <p>Will you be my Muppi?</p>
+
+    <div class="buttons">
+      <button id="yesBtn" onclick="accept()">Yes 💖</button>
+      <button id="noBtn">No!!!</button>
+    </div>
+  </div>
+
+  <!-- YES PAGE -->
+  <div class="card" id="yesPage">
+    <h1 class="heartbeat">Hey Muppy 💕</h1>
+    <p>Welcome to something made just for you.</p>
+
+    <div class="slide active">ith kandit enthina chirikunne!</div>
+    <div class="slide">chiri nirth aarelum kaanum 😂</div>
+    <div class="slide">kandu kayinju ishtaayo</div>
+
+    <p onclick="toggleNote()" style="cursor:pointer;">💖 Tap here</p>
+    <div id="secretNote" style="display:none;">
+      Thank you for being you.  
+      I really appreciate us.
+    </div>
+
+    <div class="love-card">
+      <h3>Happy ADVANCED Valentine’s Day 💝</h3>
+      <p>You make days brighter just by being you.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>Developed by Jawad</footer>
+
+<!-- MUSIC -->
+<audio id="bgMusic" loop>
+  <source src="https://cdn.pixabay.com/audio/2022/10/09/audio_2b7d8b7d52.mp3">
+</audio>
+
+<canvas id="confetti"></canvas>
+
+<script>
+/* NO BUTTON ESCAPE */
+const noBtn = document.getElementById("noBtn");
+const area = document.querySelector(".buttons");
+
+noBtn.addEventListener("touchstart", moveNo);
+noBtn.addEventListener("click", moveNo);
+
+function moveNo(e){
+  e.preventDefault();
+  noBtn.style.left = Math.random()*(area.clientWidth-noBtn.offsetWidth)+"px";
+  noBtn.style.top = Math.random()*(area.clientHeight-noBtn.offsetHeight)+"px";
+}
+
+/* YES ACTION */
+function accept(){
+  document.getElementById("questionPage").style.display="none";
+  document.getElementById("yesPage").style.display="block";
+  document.getElementById("bgMusic").play();
+  confetti();
+  startCarousel();
+}
+
+/* CAROUSEL */
+function startCarousel(){
+  const slides=document.querySelectorAll(".slide");
+  let i=0;
+  setInterval(()=>{
+    slides[i].classList.remove("active");
+    i=(i+1)%slides.length;
+    slides[i].classList.add("active");
+  },2500);
+}
+
+/* NOTE */
+function toggleNote(){
+  const n=document.getElementById("secretNote");
+  n.style.display=n.style.display==="block"?"none":"block";
+}
+
+/* DARK MODE */
+function toggleDark(){
+  document.body.classList.toggle("dark");
+}
+
+/* CONFETTI */
+function confetti(){
+  const c=document.getElementById("confetti");
+  const x=c.getContext("2d");
+  c.width=innerWidth;c.height=innerHeight;
+  let p=[...Array(100)].map(()=>({
+    x:Math.random()*c.width,
+    y:-20,
+    s:6,
+    d:2+Math.random()*4,
+    col:`hsl(${Math.random()*360},80%,60%)`
+  }));
+  (function a(){
+    x.clearRect(0,0,c.width,c.height);
+    p.forEach(o=>{
+      o.y+=o.d;
+      x.fillStyle=o.col;
+      x.fillRect(o.x,o.y,o.s,o.s);
+    });
+    requestAnimationFrame(a);
+  })();
+}
+</script>
+
+</body>
+</html>
